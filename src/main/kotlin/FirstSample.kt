@@ -1,5 +1,7 @@
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
+import com.yandex.div.dsl.serializer.ColorSerializer
+import divkit.dsl.*
+import divkit.dsl.scope.DivScope
+import divkit.dsl.*
 
 object FirstSample {
     fun generateResponse(): DivKitResponse = DivKitResponse(
@@ -11,7 +13,8 @@ object FirstSample {
                     stateId = 0,
                     div = SampleDiv(
                         type = "text",
-                        text = "Hello, DivKit"
+                        text = "Hello, DivKit",
+                        margins = DivKitPaddings(top = 16, bottom = 16, left = 16, right = 16),
                     )
                 )
             )
@@ -19,26 +22,21 @@ object FirstSample {
     )
 }
 
-@Serializable
 data class DivKitResponse(val templates: DivKitTemplate, val card: DivKitCard)
 
-@Serializable
 class DivKitTemplate
 
-@Serializable
-class DivKitCard(@SerialName("log_id") val logId: String, val states: List<SampleState>)
+class DivKitCard(val logId: String, val states: List<SampleState>)
 
-@Serializable
-data class SampleState(@SerialName("state_id") val stateId: Int, val div: SampleDiv)
+data class SampleState(val stateId: Int, val div: SampleDiv)
 
-@Serializable
 data class SampleDiv(
-    @SerialName("type") val type: String,
-    @SerialName("text") val text: String? = null,
-    @SerialName("title") val title: String? = null,
-    @SerialName("image_url") val imageUrl: String? = null,
-    @SerialName("margins") val margins: DivKitPaddings? = null,
-    @SerialName("custom") val custom: String? = null,
-    @SerialName("items") val items: List<SampleDiv>? = null,
-    @SerialName("links") val links: List<TutorialLinks>? = null
+    val type: String,
+    val text: String? = null,
+    val title: String? = null,
+    val imageUrl: String? = null,
+    val margins: DivKitPaddings? = null,
+    val custom: String? = null,
+    val items: List<SampleDiv>? = null,
+    val links: List<TutorialLinks>? = null,
 )

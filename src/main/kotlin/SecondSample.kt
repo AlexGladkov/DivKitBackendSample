@@ -1,6 +1,3 @@
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-
 object SecondSample {
     fun generateResponse(): DivKitSecondResponse = DivKitSecondResponse(
         templates = DivKitSecondTemplate(
@@ -106,13 +103,10 @@ object SecondSample {
     )
 }
 
-@Serializable
 data class DivKitSecondResponse(val templates: DivKitSecondTemplate, val card: DivKitCard)
 
-@Serializable
 data class DivKitSecondTemplate(val tutorialCard: TutorialCard)
 
-@Serializable
 data class TutorialCard(
     val type: String,
     val items: List<TutorialItem>,
@@ -122,17 +116,15 @@ data class TutorialCard(
     val link: TutorialTemplateLink
 )
 
-@Serializable
 data class TutorialItem(
     val type: String,
-    @SerialName("font_size") val fontSize: Int? = null,
-    @SerialName("font_weight") val fontWeight: String? = null,
-    @SerialName("margins") val margins: DivKitPaddings? = null,
-    @SerialName("\$text") val text: String? = null,
-    @SerialName("\$items") val items: String? = null,
+    val fontSize: Int? = null,
+    val fontWeight: String? = null,
+    val margins: DivKitPaddings? = null,
+    val text: String? = null,
+    val items: String? = null,
 )
 
-@Serializable
 data class DivKitPaddings(
     val top: Int? = null,
     val bottom: Int? = null,
@@ -140,27 +132,24 @@ data class DivKitPaddings(
     val right: Int? = null
 )
 
-@Serializable
 data class TutorialTemplateLink(
     val type: String,
-    @SerialName("font_size") val fontSize: Int? = null,
-    @SerialName("margins") val margins: DivKitPaddings? = null,
-    @SerialName("text_color") val textColor: String? = null,
-    @SerialName("underline") val underline: String? = null,
-    @SerialName("action") val action: TutorialLinkTemplateAction? = null,
-    @SerialName("\$text") val text: String? = null
+    val fontSize: Int? = null,
+    val margins: DivKitPaddings? = null,
+    val textColor: String? = null,
+    val underline: String? = null,
+    val action: TutorialLinkTemplateAction? = null,
+    val text: String? = null
 )
 
-@Serializable
 data class TutorialLinkTemplateAction(
-    @SerialName("\$url") val url: String,
-    @SerialName("\$log_id") val logId: String
+    val url: String,
+    val logId: String
 )
 
-@Serializable
 data class TutorialLinks(
     val type: String,
-    @SerialName("link_text") val linkText: String,
-    @SerialName("link") val link: String,
-    @SerialName("log") val log: String
+    val linkText: String,
+    val link: String,
+    val log: String
 )
