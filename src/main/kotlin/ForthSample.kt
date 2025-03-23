@@ -1,4 +1,5 @@
 import base.renderButton
+import base.renderOutlinedButton
 import divkit.dsl.*
 
 object ForthSample {
@@ -70,16 +71,16 @@ object ForthSample {
                                     )
                                 )
                             ),
-                            renderButton(
-                                text = "Book Now!",
-                                background = solidBackground(color(Colors.accentColor)).asList(),
+                            renderOutlinedButton(
+                                text = "Make an appointment now!",
+//                                background = solidBackground(color(Colors.accentColor)).asList(),
                                 paddings = edgeInsets(all = 16),
                                 margins = edgeInsets(start = 16, end = 16, bottom = 16),
-                                textColor = color(Colors.textAccent),
+                                textColor = color(Colors.textPrimary),
                                 actions = listOf(
                                     action(
                                         logId = "BUTTON_CLICK",
-                                        url = Url.create("sample-action://toast?message=Hello, World"),
+                                        url = Url.create("sample-action://toast?message=Booked"),
                                         payload = mapOf(
                                             "event" to "local_click",
                                             "value" to "123"

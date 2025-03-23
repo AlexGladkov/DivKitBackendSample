@@ -31,6 +31,8 @@ fun DivScope.renderButton(
 fun DivScope.renderOutlinedButton(
     text: String,
     actions: List<Action>,
+    textColor: Color = color(Colors.textPrimary),
+    paddings: EdgeInsets = edgeInsets(),
     margins: EdgeInsets = edgeInsets(),
 ): Div {
     return text(
@@ -39,9 +41,10 @@ fun DivScope.renderOutlinedButton(
         text = text,
         fontWeight = medium,
         fontSize = 16,
-        textColor = color(Colors.textPrimary),
+        textColor = textColor,
         margins = margins,
         actions = actions,
+        paddings = paddings,
         border = border(
             cornerRadius = 8,
             stroke = stroke(

@@ -1,10 +1,6 @@
-import base.renderButton
-import base.renderOutlinedButton
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.module.kotlin.kotlinModule
-import com.yandex.div.dsl.model.DivAction
 import divkit.dsl.*
-import divkit.dsl.Url
 import io.ktor.http.*
 import io.ktor.serialization.jackson.*
 import io.ktor.server.engine.embeddedServer
@@ -14,6 +10,8 @@ import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import io.ktor.server.plugins.cors.routing.*
+import kotlin.random.Random
+import kotlin.random.asJavaRandom
 
 fun main() {
     embeddedServer(Netty, port = 9090, host = "0.0.0.0") {
@@ -36,7 +34,33 @@ fun main() {
 
         routing {
             get("/") {
-                call.respond(ForthSample.makeDivan())
+                val rnd = Random(0)
+                    .asJavaRandom()
+                    .nextInt(0, 10)
+                println("Rnd $rnd")
+                if (rnd % 2 == 0) {
+                    call.respond(ForthSample.makeDivan())
+                } else {
+                    call.respond(divan {
+                        data(
+                            logId = "Not Found",
+                            div = stack(
+                                items = listOf(
+                                    text(
+                                        text = "Not Found",
+                                        fontSize = 48,
+                                        alignmentHorizontal = center,
+                                        alignmentVertical = center
+                                    )
+                                )
+                            )
+                        )
+                    })
+                }
+            }
+
+            get("/screen") {
+                call.respond(ThirdSample.makeDivan())
             }
         }
     }.start(wait = true)
